@@ -1,0 +1,42 @@
+ <div class="container mt-5" >
+
+  <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{successmsg}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <h2 class="text-center">ProductList</h2>
+    <table class="table table-bordered" style="border: 2px solid black;">
+        <thead>
+          <tr>
+             
+            <th scope="col">productid</th>
+            <th scope="col">productname</th>
+            <th scope="col">categoryid</th>
+            <th scope="col">categoryname</th>
+            <th scope="col">Edits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor ='let product of products'>
+            <th scope="row">{{product.productid}}</th>
+            <td>{{product.productname}}</td>
+            <td>{{product.categoryid}}</td>
+            <td>{{product.categoryname}}</td>
+            <td >
+              <button class="btn btn-sm btn-danger" (click)="deleteID(product.productid)" >Delete</button>
+              &nbsp;
+            <a  [routerLink]="['/create',product.productid]"  class="btn btn-sm btn-success">Update</a>
+            </td>
+          </tr>
+          
+           
+        </tbody>
+      </table> <div class="text-center">
+        <button class="btn btn-primary btn-sm" (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+        &nbsp;
+        <span>{{ currentPage }}</span>
+        &nbsp;
+        <button class="btn btn-primary btn-sm" (click)="onPageChange(currentPage + 1)">Next</button>
+    </div>
+
+ </div>
